@@ -67,18 +67,22 @@ function SocialShare() {
   }
 
   return (
-    <div className="container mx-auto p-4 max-w-4xl">
-      <h1 className="text-3xl font-bold mb-6 text-center">
+    <div className="max-w-4xl mx-auto">
+      <h1 className="text-4xl font-bold mb-8 text-center">
         Social Media Image Creator
       </h1>
-      <div className="card">
-        <div className="card-body">
-          <h2 className="card-title mb-4">Upload an Image</h2>
+      <div className="card bg-base-200 shadow-2xl">
+        <div className="card-body p-8">
+          <h2 className="card-title text-2xl mb-6">Upload an Image</h2>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Choose an image file</span>
+              <span className="label-text text-lg font-semibold">Choose an image file</span>
             </label>
-            <input type="file" onChange={handleFileUpload} className="file-input file-input-bordered file-input-primary w-full"/>
+            <input
+              type="file"
+              onChange={handleFileUpload}
+              className="file-input file-input-bordered file-input-lg w-full"
+            />
           </div>
           {isUploading && (
             <div className="mt-4">
@@ -86,10 +90,14 @@ function SocialShare() {
             </div>
           )}
           {uploadedImage && (
-            <div className="mt-6">
-              <h2 className="card-title mb-4">Select Social Media Format</h2>
+            <div className="mt-8 space-y-6">
+              <h2 className="card-title text-2xl">Select Social Media Format</h2>
               <div className="form-control">
-                <select className="select select-bordered w-full" value={selectedFormat} onChange={(e) => setSelectedFormat(e.target.value as SocialFormat)}>
+                <select
+                  className="select select-bordered select-lg w-full bg-blue-600 border-2 border-blue-700 text-white font-semibold"
+                  value={selectedFormat}
+                  onChange={(e) => setSelectedFormat(e.target.value as SocialFormat)}
+                >
                   {Object.keys(socialFormats).map((format) => (
                     <option key={format} value={format}>
                       {format}
@@ -97,30 +105,30 @@ function SocialShare() {
                   ))}
                 </select>
               </div>
-              <div className="mt-6 relative">
-                <h3 className="text-lg font-semibold mb-2">Preview:</h3>
-                <div className="flex justify-center">
+              <div className="mt-8 relative">
+                <h3 className="text-xl font-semibold mb-4">Preview:</h3>
+                <div className="flex justify-center bg-base-100 p-6 rounded-lg">
                   {isTransforming && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-base-100 bg-opacity-50 z-10">
+                    <div className="absolute inset-0 flex items-center justify-center bg-base-100 bg-opacity-50 z-10 rounded-lg">
                       <span className="loading loading-spinner loading-lg"></span>
                     </div>
                   )}
                   <CldImage
-                  width={socialFormats[selectedFormat].width}
-                  height={socialFormats[selectedFormat].height}
-                  src={uploadedImage}
-                  sizes="100vw"
-                  alt="transformed image"
-                  crop="fill"
-                  aspectRatio={socialFormats[selectedFormat].aspectRatio}
-                  gravity="auto"
-                  ref={imageRef}
-                  onLoad={() => setIsTransforming(false)}
+                    width={socialFormats[selectedFormat].width}
+                    height={socialFormats[selectedFormat].height}
+                    src={uploadedImage}
+                    sizes="100vw"
+                    alt="transformed image"
+                    crop="fill"
+                    aspectRatio={socialFormats[selectedFormat].aspectRatio}
+                    gravity="auto"
+                    ref={imageRef}
+                    onLoad={() => setIsTransforming(false)}
                   />
                 </div>
               </div>
-              <div className="card-actions justify-end mt-6">
-                <button className="btn btn-primary" onClick={handleDownload}>
+              <div className="card-actions justify-end mt-8">
+                <button className="btn btn-primary btn-lg" onClick={handleDownload}>
                   Download for {selectedFormat}
                 </button>
               </div>

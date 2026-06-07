@@ -44,28 +44,46 @@ function VideoUpload() {
     }
   }
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Upload Video</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
+    <div className="max-w-2xl mx-auto">
+      <h1 className="text-4xl font-bold mb-8">Upload Video</h1>
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="form-control">
           <label className="label">
-            <span className="label-text">Title</span>
+            <span className="label-text text-lg font-semibold">Title</span>
           </label>
-          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className="input input-bordered w-full" required />
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="input input-bordered input-lg w-full"
+            placeholder="Enter video title"
+            required
+          />
         </div>
-        <div>
+        <div className="form-control">
           <label className="label">
-            <span className="label-text">Description</span>
+            <span className="label-text text-lg font-semibold">Description</span>
           </label>
-          <textarea value={description} onChange={(e) => setDescription(e.target.value)} className="textarea textarea-bordered w-full" />
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            className="textarea textarea-bordered textarea-lg w-full h-32"
+            placeholder="Enter video description"
+          />
         </div>
-        <div>
+        <div className="form-control">
           <label className="label">
-            <span className="label-text">Video File</span>
+            <span className="label-text text-lg font-semibold">Video File</span>
           </label>
-          <input type="file" accept="video/*" onChange={(e) => setFile(e.target.files?.[0] || null)} className="file-input file-input-bordered w-full" required />
+          <input
+            type="file"
+            accept="video/*"
+            onChange={(e) => setFile(e.target.files?.[0] || null)}
+            className="file-input file-input-bordered file-input-lg w-full"
+            required
+          />
         </div>
-        <button type="submit" className="btn btn-primary" disabled={isUploading}>
+        <button type="submit" className="btn btn-primary btn-lg w-full" disabled={isUploading}>
           {isUploading ? "Uploading..." : "Upload Video"}
         </button>
       </form>
