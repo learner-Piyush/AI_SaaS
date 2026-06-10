@@ -18,12 +18,7 @@ function AppLayout({children}: Readonly<{children: React.ReactNode}>) {
     const router = useRouter()
     const {signOut} = useClerk()
     const {user} = useUser()
-
-    const getCurrentPageName = () => {
-        const page = sidebarItems.find(item => item.href === pathname)
-        return page?.label || "Dashboard"
-    }
-
+    
     const handleLogoClick = () => router.push("/")
     const handleSignOut = async () => await signOut()
   return (
@@ -74,10 +69,6 @@ function AppLayout({children}: Readonly<{children: React.ReactNode}>) {
             <aside className="bg-base-200 w-64 h-full flex flex-col border-r-2 border-base-300">
                 <div className="flex items-center justify-center py-4 border-b border-base-300">
                     <ImageIcon className="w-10 h-10 text-primary" />
-                </div>
-                <div className="px-4 py-3 border-b border-base-300">
-                    <p className="text-xs font-semibold text-base-content/60 uppercase tracking-wider">Current Page</p>
-                    <p className="text-lg font-bold text-primary mt-1">{getCurrentPageName()}</p>
                 </div>
                 <ul className="menu p-4 w-full text-base-content grow">
                     {sidebarItems.map((item) => (
